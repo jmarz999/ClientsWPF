@@ -1,0 +1,83 @@
+﻿<Window x:Class="Clients.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clients"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="24" Text="Clients App"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Name"/>
+                <TextBox Grid.Row="1" Text=""/>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Birth Date"/>
+                <DatePicker Grid.Row="1" SelectedDate="{Binding BirthDate}"/>
+            </Grid>
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                <Button Content="Add new address"></Button>
+                <Button Content="Submit form"></Button>
+                <Button Content="Import xml"></Button>
+            </StackPanel>
+            </Grid>
+        <Grid Grid.Column="1" Margin="-48,10,10,10">
+            <ItemsControl Name="ClientList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Margin="5,0,0,0">
+                                <TextBlock Text="{Binding Id}"/>
+                            </Grid>
+                            <Grid Margin="5,0,0,0">
+                                <TextBlock Text="{Binding Name}"/>
+                            </Grid>
+                            <Grid Margin="5,0,0,0">
+                                <TextBlock Text="{Binding BirthDate}"/>
+                            </Grid>
+                            <Grid Margin="5,0,0,0">
+                                <ItemsControl ItemsSource="{Binding Addressess}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Grid Margin="5,0,0,0">
+                                                    <TextBlock Text="{Binding Type}"/>
+                                                </Grid>
+                                                <Grid Margin="5,0,0,0">
+                                                    <TextBlock Text="{Binding Name}"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+    
+</Window>
